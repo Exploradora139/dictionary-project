@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Dictionary.css";
 
 export default function Dictionary() {
   let [keyboard, setKeyboard] = useState("");
 
+  function handleResponse(response) {
+    console.log(response.data);
+  }
+
   function search(event) {
     event.preventDefault();
-    alert(`Searching for ${keyboard} definition`);
+
+    let apiKey = "36399t92b73b5o4fa0b8a2cb798d68aa";
+    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyboard}&key=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   function handleKeyboardChange(event) {
