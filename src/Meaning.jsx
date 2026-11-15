@@ -1,21 +1,41 @@
 import React from "react";
 
 export default function Meaning(props) {
-  console.log(props.meaning);
+  if (props.meaning.definitions) {
+    return (
+      <div className="Meaning">
+        <h3>{props.meaning.partOfSpeech}</h3>
+        {props.meaning.definitions.map(function (definition, index) {
+          return (
+            <div key={index}>
+              <p>
+                {definition.definition}
+                {definition.example && (
+                  <>
+                    <br />
+                    <em>{definition.example}</em>
+                  </>
+                )}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div className="Meaning">
       <h3>{props.meaning.partOfSpeech}</h3>
-      {props.meaning.definition.map(function (def, index) {
-        return (
-          <div key={index}>
-            <p>
-              {def.definition}
-              <br />
-              <em>{def.example}</em>
-            </p>
-          </div>
-        );
-      })}
+      <p>
+        {props.meaning.definition}
+        {props.meaning.example && (
+          <>
+            <br />
+            <em>{props.meaning.example}</em>
+          </>
+        )}
+      </p>
     </div>
   );
 }

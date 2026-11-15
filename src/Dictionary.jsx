@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Result from "./Results";
+import Results from "./Results";
 import "./Dictionary.css";
 
 export default function Dictionary() {
-  let [keyboard, setKeyboard] = useState("");
-  let [result, setResult] = useState(null);
+  let [keyword, setKeyword] = useState("");
+  let [results, setResults] = useState(null);
 
   function handleResponse(response) {
-    console.log(response.data);
-    setResult(response.data);
+    if (Array.isArray(response.data)) {
+      setResults(response.data[0]);
+    } else {
+      setResults(response.data);
+    }
   }
 
   function search(event) {
@@ -17,21 +20,20 @@ export default function Dictionary() {
 
     // SheCodes Dictionary API request
     let apiKey = "36399t92b73b5o4fa0b8a2cb798d68aa";
-    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyboard}&key=${apiKey}`;
+    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
   }
 
-  function handleKeyboardChange(event) {
-    setKeyboard(event.target.value);
+  function handleKeywordChange(event) {
+    setKeyword(event.target.value);
   }
 
   return (
     <div className="Dictionary">
       <form onSubmit={search}>
-        <input type="text" value={keyboard} onChange={handleKeyboardChange} />
-        <button type="submit">Search</button>
+        <input type="search" onChange={handleKeywordChange} />
       </form>
-      {result && <Result data={result} />}
+      <Results results={results} />
     </div>
   );
 }

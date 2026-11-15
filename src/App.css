@@ -3,12 +3,12 @@
 }
 
 .App-logo {
-  max-width: 2 00px;
+  max-width: 200px;
   display: block;
   margin: 0 auto;
 }
 
 .App-footer {
-  margin: 30px 0;
   text-align: center;
+  margin: 30px 0;
 }
