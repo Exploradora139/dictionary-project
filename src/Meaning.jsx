@@ -9,33 +9,15 @@ export default function Meaning(props) {
         return (
           <div key={index}>
             <p>
-              {definition.definition}
-              {definition.example && (
-                <>
-                  <br />
-                  <em>{definition.example}</em>
-                </>
-              )}
+              <strong>Definition:</strong> {definition.definition}
+              <br />
+              <strong>Example:</strong>
+              <em>{definition.example}</em>
+              <Synonyms synonyms={definition.synonyms} />
             </p>
-            <Synonyms synonyms={definition.synonyms} />
           </div>
         );
       })}
     </div>
   );
 }
-
-return (
-  <div className="Meaning">
-    <h3>{props.meaning.partOfSpeech}</h3>
-    <p>
-      {props.meaning.definition}
-      {props.meaning.example && (
-        <>
-          <br />
-          <em>{props.meaning.example}</em>
-        </>
-      )}
-    </p>
-  </div>
-);
