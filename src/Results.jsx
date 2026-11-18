@@ -6,21 +6,23 @@ export default function Results(props) {
   if (props.results) {
     return (
       <div className="Results">
-        <h2>{props.results.word}</h2>
-        {props.results.phonetic && (
-          <Phonetic
-            phonetic={props.results.phonetic}
-            word={props.results.word}
-          />
-        )}
-        {props.results.phonetics &&
-          props.results.phonetics.map(function (phonetic, index) {
-            return (
-              <div key={index}>
-                <Phonetic phonetic={phonetic} word={props.results.word} />
-              </div>
-            );
-          })}
+        <section>
+          <h2>{props.results.word}</h2>
+          {props.results.phonetic && (
+            <Phonetic
+              phonetic={props.results.phonetic}
+              word={props.results.word}
+            />
+          )}
+          {props.results.phonetics &&
+            props.results.phonetics.map(function (phonetic, index) {
+              return (
+                <div key={index}>
+                  <Phonetic phonetic={phonetic} word={props.results.word} />
+                </div>
+              );
+            })}
+        </section>
         {props.results.meanings &&
           props.results.meanings
             .filter(function (meaning, index, array) {
@@ -38,9 +40,9 @@ export default function Results(props) {
             })
             .map(function (meaning, index) {
               return (
-                <div key={index}>
+                <section key={index}>
                   <Meaning meaning={meaning} />
-                </div>
+                </section>
               );
             })}
       </div>
