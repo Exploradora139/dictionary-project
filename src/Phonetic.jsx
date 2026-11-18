@@ -27,14 +27,4 @@ export default function Phonetic(props) {
       </div>
     );
   }
-
-  // When phonetic is an object (from Free Dictionary API)
-  return (
-    <div className="Phonetic">
-      <button type="button" onClick={playAudio}>
-        🔊 Listen
-      </button>
-      <span className="text">{props.phonetic.text}</span>
-    </div>
-  );
 }
