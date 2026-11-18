@@ -5,8 +5,7 @@
 }
 
 .Meaning .example {
-  font-size: 12px;
+  color: grey;
   font-style: italic;
-  opacity: 0.6;
-  color: #70757a;
+  margin-top: 10px;
 }
